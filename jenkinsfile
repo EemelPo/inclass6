@@ -1,19 +1,22 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
-                git 'https://github.com/EemelPo/inclass6.git'
+                git url: 'https://github.com/EemelPo/inclass6.git', branch: 'master'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                // Use 'bat' for Windows instead of 'sh'
+                bat 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                // Use 'bat' for Windows instead of 'sh'
+                bat 'mvn test'
             }
         }
     }
