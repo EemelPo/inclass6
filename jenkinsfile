@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                git url: 'https://github.com/EemelPo/inclass6.git', branch: 'master'
+            }
+        }
+        stage('Build') {
+            steps {    
+                bat 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+    }
+}
